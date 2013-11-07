@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace Conver
 {
 	/// <summary>
@@ -44,23 +43,41 @@ namespace Conver
 		
 		void Button1Click(object sender, EventArgs e)
 		{
+			double d, p, r;
+			string c;
+			
 			if ( textBox1.Text.Length == 0 || textBox2.Text.Length == 0){
-				MessageBox.Show("ERROR..!!! \n\tEl Campo Pesos y Tipo De Cambio No Pueden Estar Vacios..!!", "Advertencia",
-				                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("El campo Pesos y Tipo de Cambio no pueden estar vacios!!!!",
+				                "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 			}
-
-			double a, b, c; 
-			
-			
-			a = System.Double.Parse(textBox1.Text);
-			b = System.Double.Parse(textBox2.Text);
-			
-			c = a / b;
-			
-			
-			textBox3.Text = c.ToString();
+			try {
+				d = System.Double.Parse(textBox1.Text);
+				p = System.Double.Parse(textBox2.Text);
+				
+				
+				
+				r = d / p;
+				
+				c =Convert.ToString(r);
+				if(textBox1.Text == "" || textBox1.Text == "0" || textBox1.Text == "0.0")
+					MessageBox.Show("Campo Peso vacio..!!");
+				if(textBox2.Text == "" || textBox2.Text == "0" || textBox2.Text == "0.0"){
+					MessageBox.Show("Campo Cambiovacio..!!");
+					return;
+				}
+				
+				
+				textBox3.Text = c.ToString();
+				
+			}
+			catch(Exception){
+				
+				MessageBox.Show("Datos Incorrectos........Haz introducido: ["+textBox1.Text+"] y ["+textBox2.Text+"]");
+				return;
+			}
 		}
+		
 		
 		void Button2Click(object sender, EventArgs e)
 		{
@@ -70,9 +87,7 @@ namespace Conver
 				{
 					c.Text = "";
 					this.textBox1.Focus();
-
 				}
-
 			}
 		}
 		
